@@ -2,7 +2,6 @@
   require_once("mysql.class.php"); //класс для безопасной работы с бд
   require_once("work.class.php"); //класс для работы
   require_once('mysql.options.php'); //данные для подключения к бд
-  //$db=new SafeMySQL($mysqlOpt); //подключаемся к бд
   
   $work = new Work($mysqlOpt);
 
