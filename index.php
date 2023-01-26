@@ -10,6 +10,7 @@
   if(!empty($_GET['edit'])){ //если нужно редактирование записи
     if(!empty($_POST['name']) && !empty($_POST['age'])){ //и есть данные для обновления
       $work->edit_str($_GET['edit'], $_POST['name'], $_POST['age']);
+      header("Location: https://".$_SERVER['SERVER_NAME'].'/');
     }
     else{ //нет данных для обновления - подгружаем их для формы
       $form=$work->get_str($_GET['edit']);
