@@ -18,6 +18,7 @@
   }
   if(!empty($_GET['del'])){ //удалить запиись
     $work->del_str($_GET['del']);
+    header("Location: https://".$_SERVER['SERVER_NAME'].'/');
   }
   if(empty($_GET['edit']) && (!empty($_POST['name']) && !empty($_POST['age']))){ //не редактируем, но добавляем
     $work->add_str($_POST['name'], $_POST['age']);
