@@ -5,22 +5,26 @@
   //$db=new SafeMySQL($mysqlOpt); //подключаемся к бд
   
   $work = new Work($mysqlOpt);
-  $form = ['name'=>'', 'age'=>''];
-  if(!empty($_GET['edit'])){
-    if(!empty($_POST['name']) && !empty($_POST['age'])){
+
+  $form = ['name'=>'', 'age'=>'']; //заполнение формы
+
+  if(!empty($_GET['edit'])){ //если нужно редактирование записи
+    if(!empty($_POST['name']) && !empty($_POST['age'])){ //и есть данные для обновления
       $work->edit_str($_GET['edit'], $_POST['name'], $_POST['age']);
     }
-    else{$form=$work->get_str($_GET['edit']);}
+    else{ //нет данных для обновления - подгружаем их для формы
+      $form=$work->get_str($_GET['edit']);
+    }
   }
-  if(!empty($_GET['del'])){
+  if(!empty($_GET['del'])){ //удалить запиись
     $work->del_str($_GET['del']);
   }
-  if(empty($_GET['edit']) && (!empty($_POST['name']) && !empty($_POST['age']))){
+  if(empty($_GET['edit']) && (!empty($_POST['name']) && !empty($_POST['age']))){ //не редактируем, но добавляем
     $work->add_str($_POST['name'], $_POST['age']);
   }
 
-  $table=$work->get_list();
-  $stat=$work->get_stat();
+  $table=$work->get_list(); //данные таблицы
+  $stat=$work->get_stat();  //данные статистики
 ?>
 
 <!DOCTYPE html>
